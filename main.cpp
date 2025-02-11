@@ -2,6 +2,7 @@
 #include <functional>
 #include <iostream>
 #include <ostream>
+#include "grid/grid.h"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 
@@ -11,6 +12,8 @@ constexpr int SCREEN_H = 1000;
 constexpr int RESOLUTION = 5;
 constexpr int COLS = SCREEN_W / RESOLUTION;
 constexpr int ROWS = SCREEN_H / RESOLUTION;
+
+auto *grid = new Grid();
 
 // @formatter:off
 void init();
@@ -93,6 +96,7 @@ int main(int argc, char **argv) {
 }
 
 void init() {
+    grid->init(COLS, ROWS);
 }
 
 void update() {
