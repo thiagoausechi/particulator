@@ -1,3 +1,7 @@
+#include <cstdio>
+#include <functional>
+#include <iostream>
+#include <ostream>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 
