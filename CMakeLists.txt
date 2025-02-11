@@ -6,12 +6,15 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(SOURCE_FILES main.cpp)
 
-add_executable(particulator main.cpp)
+add_executable(${PROJECT_NAME} main.cpp)
 
-INCLUDE_DIRECTORIES(  /opt/homebrew/Cellar/allegro/5.2.10.1/include )
-LINK_DIRECTORIES(  /opt/homebrew/Cellar/allegro/5.2.10.1/lib )
+INCLUDE_DIRECTORIES(/opt/homebrew/Cellar/allegro/5.2.10.1/include)
+LINK_DIRECTORIES(/opt/homebrew/Cellar/allegro/5.2.10.1/lib)
 
 file(GLOB LIBRARIES "/opt/homebrew/Cellar/allegro/5.2.10.1/lib/*.dylib")
+#file(GLOB_RECURSE SRCS "${CMAKE_SOURCE_DIR}/*.cpp")
+file(GLOB_RECURSE HEADERS "${CMAKE_SOURCE_DIR}/*.h")
+
 message("LIBRARIES = ${LIBRARIES}")
 
-TARGET_LINK_LIBRARIES(particulator  ${LIBRARIES})
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${LIBRARIES})
