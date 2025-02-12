@@ -55,7 +55,7 @@ public:
         for (const int index: this->modifiedIndices) {
             const float
                     x = static_cast<float>(index % this->width),
-                    y = static_cast<float>(index) / static_cast<float>(this->width),
+                    y = static_cast<float>(index / this->width),
                     startX = x * resolutionAsFloat,
                     startY = y * resolutionAsFloat,
                     endX = startX + resolutionAsFloat,
