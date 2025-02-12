@@ -53,12 +53,13 @@ public:
     void draw(const int resolution) const {
         const auto resolutionAsFloat = static_cast<float>(resolution);
         for (const int index: this->modifiedIndices) {
-            const auto x = static_cast<float>(index % this->width);
-            const auto y = static_cast<float>(index) / static_cast<float>(this->width);
-            const auto startX = x * resolutionAsFloat;
-            const auto startY = y * resolutionAsFloat;
-            const auto endX = startX + resolutionAsFloat;
-            const auto endY = startY + resolutionAsFloat;
+            const float
+                    x = static_cast<float>(index % this->width),
+                    y = static_cast<float>(index) / static_cast<float>(this->width),
+                    startX = x * resolutionAsFloat,
+                    startY = y * resolutionAsFloat,
+                    endX = startX + resolutionAsFloat,
+                    endY = startY + resolutionAsFloat;
             const auto color = this->grid[index]->getProperties().color;
             al_draw_filled_rectangle(startX, startY, endX, endY, color);
         }
