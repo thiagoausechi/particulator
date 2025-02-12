@@ -36,7 +36,6 @@ public:
         this->width = width;
         this->height = height;
         this->clear();
-        this->modifiedIndices.clear();
         this->cleared = false;
         this->rowCount = 0;
 
@@ -48,9 +47,6 @@ public:
     }
 
     void draw(const int resolution) const {
-        if (!this->needsUpdate())
-            return;
-
         const auto resolutionAsFloat = static_cast<float>(resolution);
         for (const int index: this->modifiedIndices) {
             const auto x = static_cast<float>(index % this->width);
