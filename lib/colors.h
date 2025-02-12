@@ -31,11 +31,11 @@ struct Colors {
     float hue = color.hue + modifiers.hueFn();
     hue = std::fmod(hue, 360.0f);
 
-    float saturation = color.saturation + static_cast<float>(modifiers.satFn()) / 100.0f;
-    saturation = std::fmax(0.0f, std::fmin(saturation, 1.0f));
+    float saturation = color.saturation + static_cast<float>(modifiers.satFn());
+    saturation = std::fmax(0.0f, std::fmin(saturation / 100.0f, 1.0f));
 
-    float lightness = color.lightness + static_cast<float>(modifiers.lightFn()) / 100.0f;
-    lightness = std::fmax(0.0f, std::fmin(lightness, 1.0f));
+    float lightness = color.lightness + static_cast<float>(modifiers.lightFn());
+    lightness = std::fmax(0.0f, std::fmin(lightness / 100.0f, 1.0f));
 
     return {hue, saturation, lightness};
   }
