@@ -29,6 +29,24 @@ public:
         this->rowCount = this->grid.size() / this->width;
     }
 
+    int indexOf(const int x, const int y) const {
+        return y * this->width + x;
+    }
+
+    void setIndex(const int index, const int particle) {
+        this->grid[index] = particle;
+        // after implement the Particle Class
+        // this will update the index of the Particle
+        this->modifiedIndices.insert(index);
+    }
+
+    void set(const int x, const int y, const int particle) {
+        const int index = this->indexOf(x, y);
+        if (x < 0 || x >= this->width) return;
+        if (y < 0 || y >= this->height) return;
+        this->setIndex(index, particle);
+    }
+
     ~Grid() = default;
 };
 
