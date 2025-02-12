@@ -47,6 +47,14 @@ public:
         this->setIndex(index, particle);
     }
 
+    void swap(const int a, const int b) {
+        // TODO: verify if a && b are empty
+        const auto temp = this->grid[a];
+        this->grid[a] = this->grid[b];
+        this->setIndex(a, this->grid[b]);
+        this->setIndex(b, temp);
+    }
+
     ~Grid() = default;
 };
 
