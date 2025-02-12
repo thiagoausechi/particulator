@@ -48,13 +48,14 @@ public:
         if (!this->needsUpdate())
             return;
 
+        const auto resolutionAsFloat = static_cast<float>(resolution);
         for (const int index: this->modifiedIndices) {
-            const auto x = index % this->width;
-            const auto y = index / this->width;
-            const auto startX = x * resolution;
-            const auto startY = y * resolution;
-            const auto endX = startX + resolution;
-            const auto endY = startY + resolution;
+            const auto x = static_cast<float>(index % this->width);
+            const auto y = static_cast<float>(index) / static_cast<float>(this->width);
+            const auto startX = x * resolutionAsFloat;
+            const auto startY = y * resolutionAsFloat;
+            const auto endX = startX + resolutionAsFloat;
+            const auto endY = startY + resolutionAsFloat;
             const auto color = this->grid[index]->getProperties().color;
             al_draw_filled_rectangle(startX, startY, endX, endY, color);
         }
