@@ -46,6 +46,10 @@ public:
         }
     }
 
+    void update() const {
+        return;
+    }
+
     void draw(const int resolution) const {
         const auto resolutionAsFloat = static_cast<float>(resolution);
         for (const int index: this->modifiedIndices) {

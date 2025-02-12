@@ -101,6 +101,7 @@ void init() {
 }
 
 void update() {
+    grid->update();
 }
 
 void draw() {
