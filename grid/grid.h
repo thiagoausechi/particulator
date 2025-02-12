@@ -18,7 +18,7 @@ class Grid {
 
 public:
     Grid(): width(0), height(0), cleared(false), rowCount(0) {
-    };
+    }
 
     void clear() {
         const int size = this->width * this->height;
