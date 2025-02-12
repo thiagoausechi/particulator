@@ -34,11 +34,11 @@ public:
         this->index = index;
     }
 
-    ParticleProperties getProperties() const {
+    [[nodiscard]] ParticleProperties getProperties() const {
         return this->properties;
     }
 
-    ~Particle() = default;
+    virtual ~Particle() = default;
 };
 
 #endif //PARTICLE_H
