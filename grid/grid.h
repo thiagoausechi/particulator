@@ -75,7 +75,7 @@ public:
             return;
         }
         this->grid[index] = std::move(particle);
-        this->grid[index]->updateIndex(index);
+        this->grid[index]->setIndex(index);
         this->modifiedIndices.insert(index);
     }
 

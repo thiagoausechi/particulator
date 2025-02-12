@@ -30,7 +30,7 @@ public:
     Particle(const int index, const ParticleProperties &properties) : index(index), properties(properties) {
     }
 
-    void updateIndex(const int index) {
+    void setIndex(const int index) {
         this->index = index;
     }
 
