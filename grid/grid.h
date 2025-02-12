@@ -66,8 +66,12 @@ public:
     }
 
     void setIndex(const int index, std::unique_ptr<Particle> particle) {
+        if (index < 0 || index >= this->grid.size()) {
+            fprintf(stderr, "Index out of bounds: %d\n", index);
+            return;
+        }
         this->grid[index] = std::move(particle);
-        particle->updateIndex(index);
+        this->grid[index]->updateIndex(index);
         this->modifiedIndices.insert(index);
     }
 
