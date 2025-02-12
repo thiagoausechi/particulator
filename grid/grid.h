@@ -23,9 +23,12 @@ public:
     void clear() {
         const int size = this->width * this->height;
         this->grid.clear();
+        this->modifiedIndices.clear();
         this->grid.reserve(size);
-        for (int index = 0; index < size; index++)
+        for (int index = 0; index < size; index++) {
             this->grid.push_back(std::make_unique<EmptyParticle>(index));
+            this->modifiedIndices.insert(index);
+        }
         this->cleared = true;
     }
 
