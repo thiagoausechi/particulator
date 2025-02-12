@@ -12,6 +12,12 @@ struct Color {
   auto toAllegro() const {
     return al_color_hsl(this->hue, this->saturation, this->lightness);
   }
+
+  static auto fromRGB(const int r, const int g, const int b) {
+    float h, s, l;
+    al_color_rgb_to_hsl(r, g, b, &h, &s, &l);
+    return Color(h, s, l);
+  }
 };
 
 struct ColorModifiers {
