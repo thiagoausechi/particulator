@@ -77,10 +77,10 @@ public:
 
     void set(const int x, const int y, std::unique_ptr<Particle> particle) {
         const int index = this->indexOf(x, y);
-        if (x < 0 || x >= this->width)
+        if (x < 0 || x >= this->width || y < 0 || y >= this->height) {
+            fprintf(stderr, "Coordinates out of bounds: (%d, %d)\n", x, y);
             return;
-        if (y < 0 || y >= this->height)
-            return;
+        }
         this->setIndex(index, std::move(particle));
     }
 
