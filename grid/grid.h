@@ -55,6 +55,10 @@ public:
         this->setIndex(b, temp);
     }
 
+    bool needsUpdate() const {
+        return this->cleared || this->modifiedIndices.size() > 0;
+    }
+
     ~Grid() = default;
 };
 
