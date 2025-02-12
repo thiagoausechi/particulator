@@ -7,6 +7,7 @@
 #include <vector>
 #include <limits>
 #include <cstdio>
+#include <allegro5/allegro_primitives.h>
 
 class Grid {
     int width, height;
@@ -40,6 +41,22 @@ public:
             rowCount = static_cast<int>(this->grid.size() / this->width);
         } else {
             fprintf(stderr, "grid size too large for int\n");
+        }
+    }
+
+    void draw(const int resolution) const {
+        if (!this->needsUpdate())
+            return;
+
+        for (const int index: this->modifiedIndices) {
+            const auto x = index % this->width;
+            const auto y = index / this->width;
+            const auto startX = x * resolution;
+            const auto startY = y * resolution;
+            const auto endX = startX + resolution;
+            const auto endY = startY + resolution;
+            const auto color = this->grid[index]->getProperties().color;
+            al_draw_filled_rectangle(startX, startY, endX, endY, color);
         }
     }
 

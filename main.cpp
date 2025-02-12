@@ -103,4 +103,5 @@ void update() {
 }
 
 void draw() {
+    grid->draw(RESOLUTION);
 }
