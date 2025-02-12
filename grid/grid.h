@@ -89,12 +89,12 @@ public:
         this->modifiedIndices.insert(b);
     }
 
-    bool isEmpty(const int index) const {
-        return this->grid[index].get()->getProperties().empty;
+    [[nodiscard]] bool isEmpty(const int index) const {
+        return this->grid[index]->getProperties().empty;
     }
 
-    bool isSolid(const int index) const {
-        return this->grid[index].get()->getProperties().solid;
+    [[nodiscard]] bool isSolid(const int index) const {
+        return this->grid[index]->getProperties().solid;
     }
 
     [[nodiscard]] bool needsUpdate() const {
