@@ -2,10 +2,12 @@
 #define EMPTY_PARTICLE_H
 
 #include "particle.h"
+#include "colors.h"
 
-class EmptyParticle : public Particle {
+class EmptyParticle final : public Particle {
 public:
-  explicit EmptyParticle(const int index) : Particle(index, ParticleProperties(al_map_rgb(255, 0, 0), true)) {
+  explicit EmptyParticle(const int index) : Particle(
+    index, ParticleProperties(Colors::Black, true)) {
   }
 };
 

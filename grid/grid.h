@@ -60,7 +60,7 @@ public:
                     startY = y * resolutionAsFloat,
                     endX = startX + resolutionAsFloat,
                     endY = startY + resolutionAsFloat;
-            const auto color = this->grid[index]->getProperties().color;
+            const auto color = this->grid[index]->getProperties().color.toAllegro();
             al_draw_filled_rectangle(startX, startY, endX, endY, color);
         }
     }

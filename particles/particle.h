@@ -1,21 +1,21 @@
 #ifndef PARTICLE_H
 #define PARTICLE_H
 
-#include <allegro5/allegro_color.h>
+#include "colors.h"
 
 struct ParticleProperties {
-    ALLEGRO_COLOR color;
+    Color color;
     bool empty;
     bool solid;
 
-    explicit ParticleProperties(const ALLEGRO_COLOR color) : color(color), empty(false), solid(true) {
+    explicit ParticleProperties(const Color color) : color(color), empty(false), solid(true) {
     }
 
-    explicit ParticleProperties(const ALLEGRO_COLOR color, const bool empty) : color(color), empty(empty), solid(true) {
+    explicit ParticleProperties(const Color color, const bool empty) : color(color), empty(empty), solid(true) {
     }
 
-    ParticleProperties(const ALLEGRO_COLOR color, const bool empty, const bool solid) : color(color), empty(empty),
-        solid(solid) {
+    ParticleProperties(const Color color, const bool empty, const bool solid) : color(color), empty(empty),
+                                                                              solid(solid) {
     }
 
     ~ParticleProperties() = default;
