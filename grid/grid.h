@@ -92,6 +92,8 @@ public:
         if (!this->isValidIndex(a) || !this->isValidIndex(b))
             return;
         std::swap(this->grid[a], this->grid[b]);
+        this->grid[a]->setIndex(b);
+        this->grid[b]->setIndex(a);
         this->modifiedIndices.insert(a);
         this->modifiedIndices.insert(b);
     }
