@@ -3,6 +3,8 @@
 
 #include "colors.h"
 
+class Grid;
+
 struct ParticleProperties {
     Color color;
     bool empty;
@@ -15,7 +17,7 @@ struct ParticleProperties {
     }
 
     ParticleProperties(const Color color, const bool empty, const bool solid) : color(color), empty(empty),
-                                                                              solid(solid) {
+        solid(solid) {
     }
 
     ~ParticleProperties() = default;
@@ -30,13 +32,11 @@ public:
     Particle(const int index, const ParticleProperties &properties) : index(index), properties(properties) {
     }
 
-    void setIndex(const int index) {
-        this->index = index;
-    }
+    void setIndex(const int idx);
 
-    [[nodiscard]] ParticleProperties getProperties() const {
-        return this->properties;
-    }
+    void update(Grid &grid, const int idx);
+
+    ParticleProperties getProperties() const;
 
     virtual ~Particle() = default;
 };
