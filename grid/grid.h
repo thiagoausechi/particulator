@@ -32,6 +32,10 @@ public:
         this->cleared = true;
     }
 
+    void clearIndex(const int index) {
+        this->setIndex(index, std::make_shared<EmptyParticle>(index));
+    }
+
     void init(const int width, const int height) {
         this->width = width;
         this->height = height;
