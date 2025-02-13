@@ -1,6 +1,8 @@
 #ifndef GRID_H
 #define GRID_H
 
+#include <any>
+
 #include "particle.h"
 #include "empty_particle.h"
 #include <set>
@@ -48,8 +50,33 @@ public:
         }
     }
 
-    void update() const {
-        return;
+    void beforeUpdate() {
+        this->cleared = false;
+        this->modifiedIndices.clear();
+    }
+
+    virtual int modifyIndexHook(const int index, const std::any &params) {
+        return index;
+    }
+
+    void updateWithParams(const std::any &params = {}) {
+        for (int row = this->rowCount - 1; row >= 0; row--) {
+            const int rowOffset = row * this->width;
+            const bool leftToRight = static_cast<bool>(randomInRange(0, 1));
+            for (int i = 0; i < this->width; i++) {
+                const int columnOffset = leftToRight ? i : -i - 1 + this->width;
+                int index = rowOffset + columnOffset;
+
+                index = this->modifyIndexHook(index, params);
+                this->grid[index]->update(*this, index);
+            }
+        }
+    }
+
+    virtual bool update() {
+        this->beforeUpdate();
+        this->updateWithParams();
+        return !this->modifiedIndices.empty();
     }
 
     void draw(const int resolution) const {

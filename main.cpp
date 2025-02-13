@@ -17,7 +17,7 @@ auto grid = std::make_shared<Grid>();
 
 // @formatter:off
 void init();
-void update();
+bool update();
 void draw();
 // @formatter:on
 
@@ -74,8 +74,7 @@ int main(int argc, char **argv) {
         al_wait_for_event(event_queue, &ev);
 
         if (ev.type == ALLEGRO_EVENT_TIMER) {
-            update();
-            redraw = true;
+            redraw = update();
         } else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
             break;
         }
@@ -99,8 +98,8 @@ void init() {
     grid->init(COLS, ROWS);
 }
 
-void update() {
-    grid->update();
+bool update() {
+    return grid->update();
 }
 
 void draw() {
