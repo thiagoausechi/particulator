@@ -1,13 +1,14 @@
 #include "particle.h"
+#include "behavior.h"
 #include "grid.h"
 
 void Particle::setIndex(const int idx) {
     this->index = idx;
 }
 
-void Particle::update(Grid &grid, const int idx) {
-    if (const auto bellow = idx + grid.getWidth(); grid.isEmpty(bellow)) {
-        grid.swap(idx, bellow);
+void Particle::update(Grid &grid, const int idx) const {
+    for (const auto behavior: this->properties.behaviors) {
+        behavior->update(grid.particleAt(idx), grid);
     }
 }
 

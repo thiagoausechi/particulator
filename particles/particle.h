@@ -4,13 +4,15 @@
 #include "colors.h"
 
 class Grid;
+class Behavior;
 
 struct ParticleProperties {
     Color color;
     bool empty;
     bool solid;
+    std::vector<std::shared_ptr<Behavior> > behaviors;
 
-    explicit ParticleProperties(const Color color) : color(color), empty(false), solid(true) {
+    explicit ParticleProperties(const Color color) : color(color), empty(false), solid(true), behaviors({}) {
     }
 
     ParticleProperties &setEmpty(const bool empty = true) {
@@ -20,6 +22,11 @@ struct ParticleProperties {
 
     ParticleProperties &setSolid(const bool solid = true) {
         this->solid = solid;
+        return *this;
+    }
+
+    ParticleProperties &setBehaviors(const std::vector<std::shared_ptr<Behavior> > &behaviors) {
+        this->behaviors = behaviors;
         return *this;
     }
 
@@ -37,7 +44,7 @@ public:
 
     void setIndex(const int idx);
 
-    void update(Grid &grid, const int idx);
+    void update(Grid &grid, const int idx) const;
 
     ParticleProperties getProperties() const;
 
