@@ -13,11 +13,14 @@ struct ParticleProperties {
     explicit ParticleProperties(const Color color) : color(color), empty(false), solid(true) {
     }
 
-    explicit ParticleProperties(const Color color, const bool empty) : color(color), empty(empty), solid(true) {
+    ParticleProperties &setEmpty(const bool empty = true) {
+        this->empty = empty;
+        return *this;
     }
 
-    ParticleProperties(const Color color, const bool empty, const bool solid) : color(color), empty(empty),
-        solid(solid) {
+    ParticleProperties &setSolid(const bool solid = true) {
+        this->solid = solid;
+        return *this;
     }
 
     ~ParticleProperties() = default;
