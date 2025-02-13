@@ -165,7 +165,7 @@ public:
         return !(index < 0 || index > this->grid.size() - 1);
     }
 
-    ~Grid() = default;
+    virtual ~Grid() = default;
 };
 
 #endif //GRID_H
