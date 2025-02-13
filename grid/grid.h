@@ -27,8 +27,10 @@ public:
         this->grid.clear();
         this->modifiedIndices.clear();
         this->grid.reserve(size);
-        for (int index = 0; index < size; index++)
-            this->setIndex(index, std::make_shared<EmptyParticle>());
+        for (int index = 0; index < size; index++) {
+            this->grid.push_back(std::make_shared<EmptyParticle>());
+            this->onModified(index);
+        }
         this->cleared = true;
     }
 
