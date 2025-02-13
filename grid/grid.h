@@ -104,8 +104,7 @@ public:
             return;
         }
         this->grid[index] = std::move(particle);
-        this->grid[index]->setIndex(index);
-        this->modifiedIndices.insert(index);
+        this->onModified(index);
     }
 
     void set(const int x, const int y, std::shared_ptr<Particle> particle) {
@@ -121,10 +120,13 @@ public:
         if (!this->isValidIndex(a) || !this->isValidIndex(b))
             return;
         std::swap(this->grid[a], this->grid[b]);
-        this->grid[a]->setIndex(b);
-        this->grid[b]->setIndex(a);
-        this->modifiedIndices.insert(a);
-        this->modifiedIndices.insert(b);
+        this->onModified(a);
+        this->onModified(b);
+    }
+
+    void onModified(const int index) {
+        this->grid[index]->setIndex(index);
+        this->modifiedIndices.insert(index);
     }
 
     [[nodiscard]] bool isEmpty(const int index) const {
