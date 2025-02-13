@@ -7,7 +7,7 @@
 class EmptyParticle final : public Particle {
 public:
   explicit EmptyParticle(const int index) : Particle(
-    index, ParticleProperties(Colors::Black).setEmpty()) {
+    index, ParticleProperties().setEmpty()) {
   }
 };
 

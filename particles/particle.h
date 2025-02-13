@@ -12,7 +12,12 @@ struct ParticleProperties {
     bool solid;
     std::vector<std::shared_ptr<Behavior> > behaviors;
 
-    explicit ParticleProperties(const Color color) : color(color), empty(false), solid(true), behaviors({}) {
+    explicit ParticleProperties() : color(Colors::Black), empty(false), solid(true), behaviors({}) {
+    }
+
+    ParticleProperties &setColor(const Color color) {
+        this->color = color;
+        return *this;
     }
 
     ParticleProperties &setEmpty(const bool empty = true) {
