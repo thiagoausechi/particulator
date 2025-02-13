@@ -70,7 +70,7 @@ public:
     }
 
     void setIndex(const int index, std::shared_ptr<Particle> particle) {
-        if (index < 0 || index >= this->grid.size()) {
+        if (!this->isValidIndex(index)) {
             fprintf(stderr, "Index out of bounds: %d\n", index);
             return;
         }
@@ -81,7 +81,7 @@ public:
 
     void set(const int x, const int y, std::shared_ptr<Particle> particle) {
         const int index = this->indexOf(x, y);
-        if (x < 0 || x >= this->width || y < 0 || y >= this->height) {
+        if (!this->isValidIndex(index)) {
             fprintf(stderr, "Coordinates out of bounds: (%d, %d)\n", x, y);
             return;
         }
@@ -89,9 +89,7 @@ public:
     }
 
     void swap(const int a, const int b) {
-        if (this->isEmpty(a) || this->isEmpty(b))
-            return;
-        if (a < 0 || a >= this->grid.size() || b < 0 || b >= this->grid.size())
+        if (!this->isValidIndex(a) || !this->isValidIndex(b))
             return;
         std::swap(this->grid[a], this->grid[b]);
         this->modifiedIndices.insert(a);
@@ -99,10 +97,16 @@ public:
     }
 
     [[nodiscard]] bool isEmpty(const int index) const {
+        if (!this->isValidIndex(index))
+            return false;
+
         return this->grid[index]->getProperties().empty;
     }
 
     [[nodiscard]] bool isSolid(const int index) const {
+        if (!this->isValidIndex(index))
+            return true;
+
         return this->grid[index]->getProperties().solid;
     }
 
@@ -116,6 +120,10 @@ public:
 
     [[nodiscard]] int getHeight() const {
         return this->height;
+    }
+
+    [[nodiscard]] bool isValidIndex(const int index) const {
+        return !(index < 0 || index > this->grid.size() - 1);
     }
 
     ~Grid() = default;
