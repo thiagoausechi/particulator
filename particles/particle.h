@@ -21,7 +21,7 @@ struct ParticleProperties {
     ~ParticleProperties() = default;
 };
 
-class Particle {
+class Particle : public std::enable_shared_from_this<Particle> {
 protected:
     int index;
     ParticleProperties properties;

@@ -11,7 +11,7 @@
 
 class Grid {
     int width, height;
-    std::vector<std::unique_ptr<Particle> > grid;
+    std::vector<std::shared_ptr<Particle> > grid;
     std::set<int> modifiedIndices;
     bool cleared;
     int rowCount;
@@ -26,7 +26,7 @@ public:
         this->modifiedIndices.clear();
         this->grid.reserve(size);
         for (int index = 0; index < size; index++) {
-            this->grid.push_back(std::make_unique<EmptyParticle>(index));
+            this->grid.push_back(std::make_shared<EmptyParticle>(index));
             this->modifiedIndices.insert(index);
         }
         this->cleared = true;
@@ -69,7 +69,7 @@ public:
         return y * this->width + x;
     }
 
-    void setIndex(const int index, std::unique_ptr<Particle> particle) {
+    void setIndex(const int index, std::shared_ptr<Particle> particle) {
         if (index < 0 || index >= this->grid.size()) {
             fprintf(stderr, "Index out of bounds: %d\n", index);
             return;
@@ -79,7 +79,7 @@ public:
         this->modifiedIndices.insert(index);
     }
 
-    void set(const int x, const int y, std::unique_ptr<Particle> particle) {
+    void set(const int x, const int y, std::shared_ptr<Particle> particle) {
         const int index = this->indexOf(x, y);
         if (x < 0 || x >= this->width || y < 0 || y >= this->height) {
             fprintf(stderr, "Coordinates out of bounds: (%d, %d)\n", x, y);

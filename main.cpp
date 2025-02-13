@@ -2,7 +2,7 @@
 #include <functional>
 #include <iostream>
 #include <ostream>
-#include "grid/grid.h"
+#include "grid.h"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 
@@ -13,7 +13,7 @@ constexpr int RESOLUTION = 5;
 constexpr int COLS = SCREEN_W / RESOLUTION;
 constexpr int ROWS = SCREEN_H / RESOLUTION;
 
-auto *grid = new Grid();
+auto grid = std::make_shared<Grid>();
 
 // @formatter:off
 void init();
@@ -91,7 +91,6 @@ int main(int argc, char **argv) {
     al_destroy_timer(timer);
     al_destroy_display(display);
     al_destroy_event_queue(event_queue);
-    delete grid;
 
     return 0;
 }
