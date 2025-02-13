@@ -49,6 +49,8 @@ public:
 
     void setIndex(const int idx);
 
+    int getIndex() const;
+
     void update(Grid &grid, const int idx) const;
 
     ParticleProperties getProperties() const;

@@ -6,6 +6,11 @@ void Particle::setIndex(const int idx) {
     this->index = idx;
 }
 
+int Particle::getIndex() const {
+    return this->index;
+}
+
+
 void Particle::update(Grid &grid, const int idx) const {
     for (const auto behavior: this->properties.behaviors)
         behavior->update(grid.particleAt(idx), grid);
