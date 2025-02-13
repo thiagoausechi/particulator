@@ -45,11 +45,9 @@ public:
         this->cleared = false;
         this->rowCount = 0;
 
-        if (this->grid.size() <= static_cast<size_t>(std::numeric_limits<int>::max())) {
+        if (this->grid.size() <= static_cast<size_t>(std::numeric_limits<int>::max()))
             rowCount = static_cast<int>(this->grid.size() / this->width);
-        } else {
-            fprintf(stderr, "grid size too large for int\n");
-        }
+        else fprintf(stderr, "grid size too large for int\n");
     }
 
     void beforeUpdate() {
