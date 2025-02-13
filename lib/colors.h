@@ -21,15 +21,9 @@ struct Color {
 };
 
 struct ColorModifiers {
-  std::function<int()> hueFn;
-  std::function<int()> satFn;
-  std::function<int()> lightFn;
-
-  explicit ColorModifiers(const std::function<int()> &hueFn = []() { return 0; },
-                          const std::function<int()> &satFn = []() { return randomInRange(-20, 0); },
-                          const std::function<int()> &lightFn = []() { return randomInRange(-10, 10); })
-    : hueFn(hueFn), satFn(satFn), lightFn(lightFn) {
-  }
+  std::function<int()> hueFn = []() { return 0; };
+  std::function<int()> satFn = []() { return randomInRange(-20, 0); };
+  std::function<int()> lightFn = []() { return randomInRange(-10, 10); };
 };
 
 struct Colors {
