@@ -124,6 +124,10 @@ public:
         return this->height;
     }
 
+    [[nodiscard]] std::shared_ptr<Particle> particleAt(const int index) const {
+        return this->grid[index];
+    }
+
     [[nodiscard]] bool isValidIndex(const int index) const {
         return !(index < 0 || index > this->grid.size() - 1);
     }
