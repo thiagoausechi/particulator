@@ -44,7 +44,7 @@ protected:
     ParticleProperties properties;
 
 public:
-    Particle(const int index, const ParticleProperties &properties) : index(index), properties(properties) {
+    explicit Particle(const ParticleProperties &properties) : index(-1), properties(properties) {
     }
 
     void setIndex(const int idx);

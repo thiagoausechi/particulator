@@ -8,8 +8,7 @@
 
 class SandParticle final : public Particle {
 public:
-    explicit SandParticle(const int index) : Particle(
-        index,
+    explicit SandParticle() : Particle(
         ParticleProperties()
             .setColor(Colors::varyColor({40.0, 65.2, 60.6}))
             .setBehaviors({std::make_shared<MovesDownBehavior>()})) {
