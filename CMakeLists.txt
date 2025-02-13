@@ -10,6 +10,7 @@ add_executable(${PROJECT_NAME} main.cpp particles/particle.cpp)
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/lib)
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/particles)
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/grid)
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/behaviours)
 INCLUDE_DIRECTORIES(/opt/homebrew/Cellar/allegro/5.2.10.1/include)
 LINK_DIRECTORIES(/opt/homebrew/Cellar/allegro/5.2.10.1/lib)
 
