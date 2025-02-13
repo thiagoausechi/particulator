@@ -110,6 +110,14 @@ public:
         return this->cleared || !this->modifiedIndices.empty();
     }
 
+    [[nodiscard]] int getWidth() const {
+        return this->width;
+    }
+
+    [[nodiscard]] int getHeight() const {
+        return this->height;
+    }
+
     ~Grid() = default;
 };
 
