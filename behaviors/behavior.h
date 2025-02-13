@@ -9,9 +9,11 @@ class Grid;
 
 class Behavior {
 public:
-    void update(std::shared_ptr<Particle> particle, Grid &grid) {
+    virtual void update(std::shared_ptr<Particle> particle, Grid &grid) {
         fprintf(stderr, "Behavior::update() not implemented\n");
-    };
+    }
+
+    virtual ~Behavior() = default;
 };
 
 #endif //BEHAVIOR_H
