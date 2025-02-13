@@ -7,9 +7,8 @@ void Particle::setIndex(const int idx) {
 }
 
 void Particle::update(Grid &grid, const int idx) const {
-    for (const auto behavior: this->properties.behaviors) {
+    for (const auto behavior: this->properties.behaviors)
         behavior->update(grid.particleAt(idx), grid);
-    }
 }
 
 ParticleProperties Particle::getProperties() const {
