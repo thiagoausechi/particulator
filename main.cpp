@@ -85,6 +85,8 @@ int main(int argc, char **argv) {
 
     init();
 
+    bool mouse_left_button_down = false;
+    int mousePosX = 0, mousePosY = 0;
     while (true) {
         if (al_is_event_queue_empty(event_queue)) {
             if (!(booting || redraw))
@@ -96,6 +98,18 @@ int main(int argc, char **argv) {
 
         al_wait_for_event(event_queue, &event);
         switch (event.type) {
+            case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
+                if (event.mouse.button == ALLEGRO_MOUSE_BUTTON_LEFT)
+                    mouse_left_button_down = true;
+                break;
+            case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
+                if (mouse_left_button_down && event.mouse.button == ALLEGRO_MOUSE_BUTTON_LEFT)
+                    mouse_left_button_down = false;
+                break;
+            case ALLEGRO_EVENT_MOUSE_AXES:
+                mousePosX = event.mouse.x / RESOLUTION;
+                mousePosY = event.mouse.y / RESOLUTION;
+                break;
             case ALLEGRO_EVENT_TIMER:
                 if (!booting) redraw = update();
                 break;
@@ -103,6 +117,9 @@ int main(int argc, char **argv) {
                 goto end;
             default: break;
         }
+
+        if (mouse_left_button_down)
+            grid->set(mousePosX, mousePosY, std::make_shared<DebugParticle>());
 
         if (booting)
             booting = false;
