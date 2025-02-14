@@ -1,8 +1,6 @@
 #ifndef GRID_H
 #define GRID_H
 
-#include <any>
-
 #include "particle.h"
 #include "empty_particle.h"
 #include <set>
@@ -10,6 +8,10 @@
 #include <limits>
 #include <cstdio>
 #include <allegro5/allegro_primitives.h>
+
+struct UpdateParams {
+    int direction = 1;
+};
 
 class Grid {
     int width, height;
@@ -55,11 +57,11 @@ public:
         this->modifiedIndices.clear();
     }
 
-    virtual int modifyIndexHook(const int index, const std::any &params) {
+    virtual int modifyIndexHook(const int index, const UpdateParams &params) {
         return index;
     }
 
-    void updateWithParams(const std::any &params = {}) {
+    void updateWithParams(const UpdateParams &params = {}) {
         for (int row = this->rowCount - 1; row >= 0; row--) {
             const int rowOffset = row * this->width;
             const bool leftToRight = static_cast<bool>(randomInRange(0, 1));
