@@ -83,7 +83,6 @@ int main(int argc, char **argv) {
 
         if ((booting || redraw) && al_is_event_queue_empty(event_queue)) {
             redraw = false;
-            al_clear_to_color(al_map_rgb(0, 0, 0));
             draw();
             al_flip_display();
         }
