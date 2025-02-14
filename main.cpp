@@ -3,13 +3,14 @@
 #include <iostream>
 #include <ostream>
 #include "bidirectional_grid.h"
+#include "debug_particle.h"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 
-constexpr float FPS = 60;
+constexpr float FPS = 30;
 constexpr int SCREEN_W = 1000;
 constexpr int SCREEN_H = 1000;
-constexpr int RESOLUTION = 5;
+constexpr int RESOLUTION = 10;
 constexpr int COLS = SCREEN_W / RESOLUTION;
 constexpr int ROWS = SCREEN_H / RESOLUTION;
 
@@ -101,6 +102,12 @@ int main(int argc, char **argv) {
 void init() {
     printf("[particulator - init] everything ok. initializing...\n");
     grid->init(COLS, ROWS);
+
+    for (int x = 1; x < COLS - 1; ++x) {
+        for (int y = 0; y < 4; ++y) {
+            grid->set(x, y, std::make_shared<DebugParticle>());
+        }
+    }
 }
 
 bool update() {
