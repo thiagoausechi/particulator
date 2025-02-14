@@ -17,43 +17,6 @@ protected:
     bool cleared;
     int rowCount;
 
-public:
-    Grid(): width(0), height(0), cleared(false), rowCount(0) {
-    }
-
-    void clear() {
-        const int size = this->width * this->height;
-        this->grid.clear();
-        this->modifiedIndices.clear();
-        this->grid.reserve(size);
-        for (int index = 0; index < size; index++) {
-            this->grid.push_back(std::make_shared<EmptyParticle>());
-            this->onModified(index);
-        }
-        this->cleared = true;
-    }
-
-    void clearIndex(const int index) {
-        this->setIndex(index, std::make_shared<EmptyParticle>());
-    }
-
-    void init(const int width, const int height) {
-        this->width = width;
-        this->height = height;
-        this->clear();
-        this->cleared = false;
-        this->rowCount = 0;
-
-        if (this->grid.size() <= static_cast<size_t>(std::numeric_limits<int>::max()))
-            rowCount = static_cast<int>(this->grid.size() / this->width);
-        else fprintf(stderr, "grid size too large for int\n");
-    }
-
-    void beforeUpdate() {
-        this->cleared = false;
-        this->modifiedIndices.clear();
-    }
-
     virtual int modifyIndexHook(const int index, const UpdateParams &params) {
         return index;
     }
@@ -71,6 +34,28 @@ public:
             }
         }
     }
+
+    void beforeUpdate() {
+        this->cleared = false;
+        this->modifiedIndices.clear();
+    }
+
+public:
+    Grid(): width(0), height(0), cleared(false), rowCount(0) {
+    }
+
+    void init(const int width, const int height) {
+        this->width = width;
+        this->height = height;
+        this->clear();
+        this->cleared = false;
+        this->rowCount = 0;
+
+        if (this->grid.size() <= static_cast<size_t>(std::numeric_limits<int>::max()))
+            rowCount = static_cast<int>(this->grid.size() / this->width);
+        else fprintf(stderr, "grid size too large for int\n");
+    }
+
 
     virtual bool update() {
         this->beforeUpdate();
@@ -95,6 +80,22 @@ public:
             const auto color = this->grid[index]->getProperties().color.toAllegro();
             al_draw_filled_rectangle(startX, startY, endX, endY, color);
         }
+    }
+
+    void clear() {
+        const int size = this->width * this->height;
+        this->grid.clear();
+        this->modifiedIndices.clear();
+        this->grid.reserve(size);
+        for (int index = 0; index < size; index++) {
+            this->grid.push_back(std::make_shared<EmptyParticle>());
+            this->onModified(index);
+        }
+        this->cleared = true;
+    }
+
+    void clearIndex(const int index) {
+        this->setIndex(index, std::make_shared<EmptyParticle>());
     }
 
     [[nodiscard]] int indexOf(const int x, const int y) const {
