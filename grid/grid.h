@@ -11,7 +11,7 @@
 
 class Grid {
 protected:
-    int width, height;
+    int width, height, resolution;
     std::vector<std::shared_ptr<Particle>> grid;
     std::set<int> modifiedIndices;
     bool cleared;
@@ -41,12 +41,13 @@ protected:
     }
 
 public:
-    Grid(): width(0), height(0), cleared(false), rowCount(0) {
+    Grid(): width(0), height(0), resolution(0), cleared(false), rowCount(0) {
     }
 
-    void init(const int width, const int height) {
+    void init(const int width, const int height, const int resolution) {
         this->width = width;
         this->height = height;
+        this->resolution = resolution;
         this->clear();
         this->cleared = false;
         this->rowCount = 0;
@@ -63,8 +64,8 @@ public:
         return !this->modifiedIndices.empty();
     }
 
-    void draw(const int resolution) const {
-        const auto resolutionAsFloat = static_cast<float>(resolution);
+    void draw() const {
+        const auto resolutionAsFloat = static_cast<float>(this->resolution);
         if (this->modifiedIndices.empty())
             return;
 

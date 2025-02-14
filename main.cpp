@@ -135,7 +135,7 @@ end:
 
 void init() {
     printf("[particulator - init] everything ok. initializing...\n");
-    grid->init(COLS, ROWS);
+    grid->init(COLS, ROWS, RESOLUTION);
 
     for (int x = 1; x < COLS - 1; ++x) {
         for (int y = 0; y < 4; ++y) {
@@ -149,5 +149,5 @@ bool update() {
 }
 
 void draw() {
-    grid->draw(RESOLUTION);
+    grid->draw();
 }
