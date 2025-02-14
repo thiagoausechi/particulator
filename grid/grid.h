@@ -71,16 +71,22 @@ public:
 
         for (int index = 0; index < this->grid.size(); ++index) {
             // TEMP-REMOVED: for (const auto index: this->modifiedIndices) {
-            const float
-                    x = static_cast<float>(index % this->width),
-                    y = static_cast<float>(index / this->width),
-                    startX = x * resolutionAsFloat,
-                    startY = y * resolutionAsFloat,
-                    endX = startX + resolutionAsFloat,
-                    endY = startY + resolutionAsFloat;
-            const auto color = this->grid[index]->getProperties().color.toAllegro();
-            al_draw_filled_rectangle(startX, startY, endX, endY, color);
+            const int
+                    x = index % this->width,
+                    y = index / this->width;
+            const auto color = this->grid[index]->getProperties().color;
+            this->drawPixel(x, y, color);
         }
+    }
+
+    void drawPixel(const int x, const int y, const Color &color) const {
+        const auto resolutionAsFloat = static_cast<float>(this->resolution);
+        const float
+                startX = static_cast<float>(x) * resolutionAsFloat,
+                startY = static_cast<float>(y) * resolutionAsFloat,
+                endX = startX + resolutionAsFloat,
+                endY = startY + resolutionAsFloat;
+        al_draw_filled_rectangle(startX, startY, endX, endY, color.toAllegro());
     }
 
     void clear() {
