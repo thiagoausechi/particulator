@@ -46,6 +46,7 @@ int main(int argc, char **argv) {
 
     ALLEGRO_DISPLAY *display = nullptr;
     ALLEGRO_EVENT_QUEUE *event_queue = nullptr;
+    ALLEGRO_EVENT event;
     ALLEGRO_TIMER *timer = nullptr;
     bool booting = true;
     bool redraw = true;
@@ -85,25 +86,29 @@ int main(int argc, char **argv) {
     init();
 
     while (true) {
-        ALLEGRO_EVENT ev;
-        al_wait_for_event(event_queue, &ev);
-
-        if (!booting && ev.type == ALLEGRO_EVENT_TIMER) {
-            redraw = update();
-        } else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-            break;
-        }
-
-        if ((booting || redraw) && al_is_event_queue_empty(event_queue)) {
+        if (al_is_event_queue_empty(event_queue)) {
+            if (!(booting || redraw))
+                continue;
             redraw = false;
             draw();
             al_flip_display();
+        }
+
+        al_wait_for_event(event_queue, &event);
+        switch (event.type) {
+            case ALLEGRO_EVENT_TIMER:
+                if (!booting) redraw = update();
+                break;
+            case ALLEGRO_EVENT_DISPLAY_CLOSE:
+                goto end;
+            default: break;
         }
 
         if (booting)
             booting = false;
     }
 
+end:
     al_destroy_timer(timer);
     al_destroy_display(display);
     al_destroy_event_queue(event_queue);
