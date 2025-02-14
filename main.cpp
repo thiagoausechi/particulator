@@ -22,6 +22,7 @@ void draw();
 // @formatter:on
 
 int main(int argc, char **argv) {
+    printf("[particulator - main] welcome to particulator!\n");
     if (!al_init()) {
         fprintf(stderr, "failed to initialize allegro!\n");
         return -1;
@@ -99,6 +100,7 @@ int main(int argc, char **argv) {
 }
 
 void init() {
+    printf("[particulator - init] everything ok. initializing...\n");
     grid->init(COLS, ROWS);
 }
 
