@@ -1,7 +1,6 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <cstdio>
 #include <random>
 
 inline int randomInRange(const int min, const int max) {
