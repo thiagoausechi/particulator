@@ -11,7 +11,7 @@ struct ParticleProperties {
     Color color;
     bool empty;
     bool solid;
-    std::vector<std::shared_ptr<Behavior> > behaviors;
+    std::vector<std::shared_ptr<Behavior>> behaviors;
 
     explicit ParticleProperties() : color(Colors::Black), empty(false), solid(true), behaviors({}) {
     }
@@ -31,7 +31,7 @@ struct ParticleProperties {
         return *this;
     }
 
-    ParticleProperties &setBehaviors(const std::vector<std::shared_ptr<Behavior> > &behaviors) {
+    ParticleProperties &setBehaviors(const std::vector<std::shared_ptr<Behavior>> &behaviors) {
         this->behaviors = behaviors;
         return *this;
     }
@@ -48,11 +48,11 @@ public:
     explicit Particle(const ParticleProperties &properties) : index(-1), properties(properties) {
     }
 
-    void setIndex(const int idx);
+    void setIndex(int idx);
 
     int getIndex() const;
 
-    void update(Grid &grid, const int idx, const UpdateParams &params) const;
+    void update(Grid &grid, int idx, const UpdateParams &params) const;
 
     ParticleProperties getProperties() const;
 

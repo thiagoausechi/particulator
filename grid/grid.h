@@ -12,7 +12,7 @@
 class Grid {
 protected:
     int width, height;
-    std::vector<std::shared_ptr<Particle> > grid;
+    std::vector<std::shared_ptr<Particle>> grid;
     std::set<int> modifiedIndices;
     bool cleared;
     int rowCount;
