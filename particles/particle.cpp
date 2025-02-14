@@ -12,7 +12,7 @@ int Particle::getIndex() const {
 
 
 void Particle::update(Grid &grid, const int idx) const {
-    for (const auto behavior: this->properties.behaviors)
+    for (const auto& behavior: this->properties.behaviors)
         behavior->update(grid.particleAt(idx), grid);
 }
 
