@@ -83,6 +83,9 @@ public:
 
     void draw(const int resolution) const {
         const auto resolutionAsFloat = static_cast<float>(resolution);
+        if (this->modifiedIndices.empty())
+            return;
+
         for (const int index: this->modifiedIndices) {
             const float
                     x = static_cast<float>(index % this->width),
