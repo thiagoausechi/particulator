@@ -9,10 +9,6 @@
 #include <cstdio>
 #include <allegro5/allegro_primitives.h>
 
-struct UpdateParams {
-    int direction = 1;
-};
-
 class Grid {
 protected:
     int width, height;
@@ -71,7 +67,7 @@ public:
                 int index = rowOffset + columnOffset;
 
                 index = this->modifyIndexHook(index, params);
-                this->grid[index]->update(*this, index);
+                this->grid[index]->update(*this, index, params);
             }
         }
     }

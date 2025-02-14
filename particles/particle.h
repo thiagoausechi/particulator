@@ -2,6 +2,7 @@
 #define PARTICLE_H
 
 #include "colors.h"
+#include "update_params.h"
 
 class Grid;
 class Behavior;
@@ -51,7 +52,7 @@ public:
 
     int getIndex() const;
 
-    void update(Grid &grid, const int idx) const;
+    void update(Grid &grid, const int idx, const UpdateParams &params) const;
 
     ParticleProperties getProperties() const;
 

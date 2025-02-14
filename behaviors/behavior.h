@@ -10,7 +10,7 @@ class Grid;
 
 class Behavior {
 public:
-    virtual void update(std::shared_ptr<Particle> particle, Grid &grid, const UpdateParams &params = {}) {
+    virtual void update(std::shared_ptr<Particle> particle, Grid &grid, const UpdateParams &params) {
         fprintf(stderr, "Behavior::update() not implemented\n");
     }
 
