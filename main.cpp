@@ -2,7 +2,7 @@
 #include <functional>
 #include <iostream>
 #include <ostream>
-#include "grid.h"
+#include "bidirectional_grid.h"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 
@@ -13,7 +13,7 @@ constexpr int RESOLUTION = 5;
 constexpr int COLS = SCREEN_W / RESOLUTION;
 constexpr int ROWS = SCREEN_H / RESOLUTION;
 
-auto grid = std::make_shared<Grid>();
+auto grid = std::make_shared<BidirectionalGrid>();
 
 // @formatter:off
 void init();
