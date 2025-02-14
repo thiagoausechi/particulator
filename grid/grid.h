@@ -158,6 +158,8 @@ public:
     }
 
     [[nodiscard]] std::shared_ptr<Particle> particleAt(const int index) const {
+        if (!this->isValidIndex(index))
+            return nullptr;
         return this->grid[index];
     }
 
