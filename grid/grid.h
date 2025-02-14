@@ -86,7 +86,8 @@ public:
         if (this->modifiedIndices.empty())
             return;
 
-        for (const int index: this->modifiedIndices) {
+        for (int index = 0; index < this->grid.size(); ++index) {
+            // TEMP-REMOVED: for (const auto index: this->modifiedIndices) {
             const float
                     x = static_cast<float>(index % this->width),
                     y = static_cast<float>(index / this->width),
