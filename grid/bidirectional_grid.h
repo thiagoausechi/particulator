@@ -9,7 +9,7 @@ public:
         this->beforeUpdate();
 
         for (int pass = -1; pass <= 1; pass += 2)
-            this->updateWithParams({ .direction =  pass });
+            this->updateWithParams({.direction = pass});
 
         return !this->modifiedIndices.empty();
     }
