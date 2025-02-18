@@ -144,10 +144,6 @@ void init() {
     }
 }
 
-bool update() {
-    return grid->update();
-}
+bool update() { return grid->update(); }
 
-void draw() {
-    grid->draw();
-}
+void draw() { grid->draw(); }
