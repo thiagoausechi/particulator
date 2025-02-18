@@ -55,8 +55,9 @@ protected:
         const auto abs = std::abs(this->velocity);
         const auto floored = std::floor(abs);
         const auto mod = abs - floored;
+        const auto offset = randomInRange(0, 100) < static_cast<int>(mod * 100) ? 1 : 0;
 
-        return static_cast<int>(floored + (randomInRange(0, 1) < mod ? 1 : 0));
+        return static_cast<int>(floored) + offset;
     }
 
     [[nodiscard]] bool canPassThrough(const std::shared_ptr<Particle> &particle) const {
