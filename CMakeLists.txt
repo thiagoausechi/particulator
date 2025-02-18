@@ -1,23 +1,21 @@
 cmake_minimum_required(VERSION 3.5)
 project(particulator)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(SOURCE_FILES main.cpp)
 
-add_executable(${PROJECT_NAME} main.cpp particles/particle.cpp)
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/lib)
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/particles)
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/grid)
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/behaviors)
-INCLUDE_DIRECTORIES(/opt/homebrew/Cellar/allegro/5.2.10.1/include)
-LINK_DIRECTORIES(/opt/homebrew/Cellar/allegro/5.2.10.1/lib)
+include_directories(${PROJECT_SOURCE_DIR}/src)
+
+file(GLOB_RECURSE SRC_FILES "${PROJECT_SOURCE_DIR}/src/*.cpp")
+file(GLOB_RECURSE HEADER_FILES "${PROJECT_SOURCE_DIR}/src/*.h")
+
+add_executable(${PROJECT_NAME} ${SRC_FILES} ${HEADER_FILES})
+
+include_directories(/opt/homebrew/Cellar/allegro/5.2.10.1/include)
+link_directories(/opt/homebrew/Cellar/allegro/5.2.10.1/lib)
 
 file(GLOB LIBRARIES "/opt/homebrew/Cellar/allegro/5.2.10.1/lib/*.dylib")
-#file(GLOB_RECURSE SRCS "${CMAKE_SOURCE_DIR}/*.cpp")
-file(GLOB_RECURSE HEADERS "${CMAKE_SOURCE_DIR}/*.h")
+
+target_link_libraries(${PROJECT_NAME} ${LIBRARIES})
 
 message("LIBRARIES = ${LIBRARIES}")
-
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${LIBRARIES})

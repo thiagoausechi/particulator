@@ -1,6 +1,7 @@
-#include "particle.h"
-#include "behavior.h"
-#include "grid.h"
+#include "particles/particle.h"
+#include "behaviors/behavior.h"
+#include "grid/grid.h"
+#include "grid/update_params.h"
 
 void Particle::setIndex(const int idx) {
     this->index = idx;

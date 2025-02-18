@@ -2,10 +2,11 @@
 #include <functional>
 #include <iostream>
 #include <ostream>
-#include "bidirectional_grid.h"
-#include "debug_particle.h"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
+
+#include "grid/bidirectional_grid.h"
+#include "particles/debug_particle.h"
 
 constexpr float FPS = 30;
 constexpr int SCREEN_W = 1000;

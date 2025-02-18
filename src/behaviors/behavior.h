@@ -2,8 +2,7 @@
 #define BEHAVIOR_H
 
 #include <cstdio>
-#include <memory>
-#include "grid.h"
+#include "grid/grid.h"
 
 class Particle;
 class Grid;

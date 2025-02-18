@@ -1,8 +1,8 @@
 #ifndef PARTICLE_H
 #define PARTICLE_H
 
-#include "colors.h"
-#include "update_params.h"
+#include "lib/colors.h"
+#include "grid/update_params.h"
 
 class Grid;
 class Behavior;

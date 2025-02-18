@@ -1,7 +1,7 @@
 #ifndef MOVES_DOWN_H
 #define MOVES_DOWN_H
 
-#include "behavior.h"
+#include "behaviors/behavior.h"
 
 class MovesDown : public Behavior {
 public:

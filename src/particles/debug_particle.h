@@ -1,9 +1,9 @@
 #ifndef DEBUG_PARTICLE_H
 #define DEBUG_PARTICLE_H
 
-#include "moves.h"
-#include "particle.h"
-#include "colors.h"
+#include "particles/particle.h"
+#include "lib/colors.h"
+#include "behaviors/moves.h"
 
 inline Color debugColor{0.0, 100.0, 50.0};
 inline ColorModifiers colorModifiers{

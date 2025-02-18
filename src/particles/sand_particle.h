@@ -1,8 +1,8 @@
 #ifndef SAND_PARTICLE_H
 #define SAND_PARTICLE_H
 
-#include "particle.h"
-#include "colors.h"
+#include "particles/particle.h"
+#include "lib/colors.h"
 
 class SandParticle final : public Particle {
 public:

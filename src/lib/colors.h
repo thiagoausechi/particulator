@@ -1,8 +1,8 @@
 #ifndef COLORS_H
 #define COLORS_H
 
-#include "utils.h"
 #include <allegro5/allegro_color.h>
+#include "lib/utils.h"
 
 struct Color {
     float hue; // 0.0 to 360.0

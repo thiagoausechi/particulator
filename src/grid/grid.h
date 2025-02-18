@@ -1,13 +1,14 @@
 #ifndef GRID_H
 #define GRID_H
 
-#include "particle.h"
-#include "empty_particle.h"
 #include <set>
 #include <vector>
 #include <limits>
 #include <cstdio>
 #include <allegro5/allegro_primitives.h>
+
+#include "particles/particle.h"
+#include "particles/empty_particle.h"
 
 class Grid {
 protected:

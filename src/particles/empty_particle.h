@@ -1,8 +1,7 @@
 #ifndef EMPTY_PARTICLE_H
 #define EMPTY_PARTICLE_H
 
-#include "particle.h"
-#include "colors.h"
+#include "particles/particle.h"
 
 class EmptyParticle final : public Particle {
 public:
