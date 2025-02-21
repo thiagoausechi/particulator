@@ -31,7 +31,7 @@ protected:
                 int index = rowOffset + columnOffset;
 
                 index = this->modifyIndexHook(index, params);
-                this->grid[index]->update(*this, index, params);
+                this->particleAt(index)->update(*this, index, params);
             }
         }
     }
@@ -75,7 +75,7 @@ public:
             const int
                     x = index % this->width,
                     y = index / this->width;
-            const auto color = this->grid[index]->getProperties().color;
+            const auto color = this->particleAt(index)->getProperties().color;
             this->drawPixel(x, y, color);
         }
     }
@@ -137,7 +137,7 @@ public:
     }
 
     void onModified(const int index) {
-        this->grid[index]->setIndex(index);
+        this->particleAt(index)->setIndex(index);
         this->modifiedIndices.insert(index);
     }
 
@@ -145,14 +145,14 @@ public:
         if (!this->isValidIndex(index))
             return false;
 
-        return this->grid[index]->getProperties().empty;
+        return this->particleAt(index)->getProperties().empty;
     }
 
     [[nodiscard]] bool isSolid(const int index) const {
         if (!this->isValidIndex(index))
             return true;
 
-        return this->grid[index]->getProperties().solid;
+        return this->particleAt(index)->getProperties().solid;
     }
 
     [[nodiscard]] bool needsUpdate() const {
