@@ -2,6 +2,7 @@
 #define SAND_PARTICLE_H
 
 #include "particles/particle.h"
+#include "behaviors/moves.h"
 #include "lib/colors.h"
 
 class SandParticle final : public Particle {
