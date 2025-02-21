@@ -6,8 +6,8 @@
 
 struct Color {
     float hue; // 0.0 to 360.0
-    float saturation; // 0.0 to 100.0
-    float lightness; // 0.0 to 100.0
+    float saturation; // 0.0 to 1.0
+    float lightness; // 0.0 to 1.0
 
     auto toAllegro() const {
         return al_color_hsl(this->hue, this->saturation, this->lightness);
