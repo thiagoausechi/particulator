@@ -5,13 +5,11 @@
 
 class BidirectionalGrid final : public Grid {
 public:
-    bool update() override {
+    void update() override {
         this->beforeUpdate();
 
         for (int pass = -1; pass <= 1; pass += 2)
             this->updateWithParams({.direction = pass});
-
-        return !this->modifiedIndices.empty();
     }
 
     int modifyIndexHook(const int index, const UpdateParams &params) override {

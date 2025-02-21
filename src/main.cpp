@@ -19,7 +19,7 @@ auto grid = std::make_shared<BidirectionalGrid>();
 
 // @formatter:off
 void init();
-bool update();
+void update();
 void draw();
 // @formatter:on
 
@@ -112,7 +112,8 @@ int main(int argc, char **argv) {
                 mousePosY = event.mouse.y / RESOLUTION;
                 break;
             case ALLEGRO_EVENT_TIMER:
-                if (!booting) redraw = update();
+                if (!booting) update();
+                redraw = true;
                 break;
             case ALLEGRO_EVENT_DISPLAY_CLOSE:
                 goto end;
@@ -145,6 +146,6 @@ void init() {
     }
 }
 
-bool update() { return grid->update(); }
+void update() { grid->update(); }
 
 void draw() { grid->draw(); }

@@ -59,10 +59,9 @@ public:
     }
 
 
-    virtual bool update() {
+    virtual void update() {
         this->beforeUpdate();
         this->updateWithParams();
-        return !this->modifiedIndices.empty();
     }
 
     void draw() const {
