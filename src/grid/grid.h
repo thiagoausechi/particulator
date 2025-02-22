@@ -8,7 +8,7 @@
 #include <allegro5/allegro_primitives.h>
 
 #include "particles/particle.h"
-#include "particles/empty_particle.h"
+#include "particles/empty.h"
 
 class Grid {
 protected:

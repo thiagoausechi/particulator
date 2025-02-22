@@ -6,7 +6,7 @@
 #include <allegro5/allegro_primitives.h>
 
 #include "grid/bidirectional_grid.h"
-#include "particles/debug_particle.h"
+#include "particles/debug.h"
 
 constexpr float FPS = 30;
 constexpr int SCREEN_W = 1000;

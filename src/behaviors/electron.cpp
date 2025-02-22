@@ -1,6 +1,6 @@
 #include "behaviors/electron.h"
 #include "particles/electrons.h"
-#include "particles/conductor_particle.h"
+#include "particles/conductor.h"
 
 void ElectronBehavior::update(std::shared_ptr<Particle> particle, Grid &grid, const UpdateParams &params) {
     if (params.direction != 1)
