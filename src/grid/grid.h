@@ -14,6 +14,7 @@ class Grid {
 protected:
     int width, height, resolution;
     std::vector<std::shared_ptr<Particle>> grid;
+    std::vector<std::shared_ptr<Particle>> gridSnapshotBeforeUpdate;
     std::set<int> modifiedIndices;
     bool cleared;
     int rowCount;
@@ -39,6 +40,7 @@ protected:
     void beforeUpdate() {
         this->cleared = false;
         this->modifiedIndices.clear();
+        this->gridSnapshotBeforeUpdate = this->grid;
     }
 
 public:
@@ -170,6 +172,12 @@ public:
         if (!this->isValidIndex(index))
             return nullptr;
         return this->grid[index];
+    }
+
+    [[nodiscard]] std::shared_ptr<Particle> getParticleAtPreviousState(const int index) const {
+        if (!this->isValidIndex(index))
+            return nullptr;
+        return this->gridSnapshotBeforeUpdate[index];
     }
 
     [[nodiscard]] bool isValidIndex(const int index) const {
