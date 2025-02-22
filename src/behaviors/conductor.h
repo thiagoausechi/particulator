@@ -5,9 +5,9 @@
 #include "particles/electrons.h"
 #include "lib/neighborhood_strategy.h"
 
-class Conductor final : public Behavior {
+class ConductorBehavior final : public Behavior {
 public:
-    Conductor() = default;
+    ConductorBehavior() = default;
 
     void update(std::shared_ptr<Particle> particle, Grid &grid, const UpdateParams &params) override {
         if (params.direction != 1)

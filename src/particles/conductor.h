@@ -9,7 +9,7 @@ public:
     explicit ConductorParticle() : Particle(ParticleProperties()
         .setColor({50.0f, 1.0f, 0.5f})
         .setBehaviors({
-            std::make_shared<conductor>()
+            std::make_shared<ConductorBehavior>()
         })) {
     }
 };

@@ -3,15 +3,15 @@
 
 #include "behaviors/moves_down.h"
 
-class Moves : public MovesDown {
+class MovesBehavior : public MovesDownBehavior {
 public:
-    Moves(const float maxSpeed, const float acceleration) : MovesDown(maxSpeed, acceleration) {
+    MovesBehavior(const float maxSpeed, const float acceleration) : MovesDownBehavior(maxSpeed, acceleration) {
     }
 
     void update(std::shared_ptr<Particle> particle, Grid &grid, const UpdateParams &params) override {
         if (!this->shouldUpdate(params))
             return;
-        MovesDown::update(particle, grid, params);
+        MovesDownBehavior::update(particle, grid, params);
     }
 
 protected:

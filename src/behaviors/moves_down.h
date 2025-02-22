@@ -3,10 +3,10 @@
 
 #include "behaviors/behavior.h"
 
-class MovesDown : public Behavior {
+class MovesDownBehavior : public Behavior {
 public:
-    MovesDown(const float maxSpeed, const float acceleration) : maxSpeed(maxSpeed), acceleration(acceleration),
-                                                                velocity(0) {
+    MovesDownBehavior(const float maxSpeed, const float acceleration) : maxSpeed(maxSpeed), acceleration(acceleration),
+                                                                        velocity(0) {
     }
 
     void update(std::shared_ptr<Particle> particle, Grid &grid, const UpdateParams &params) override {

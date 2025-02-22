@@ -11,7 +11,7 @@ public:
         ParticleProperties()
         .setColor(Colors::varyColor({40.0, 65.2, 60.6}))
         .setBehaviors({
-            std::make_shared<Moves>(3, 0.4)
+            std::make_shared<MovesBehavior>(3, 0.4)
         })) {
     }
 };
