@@ -67,10 +67,6 @@ public:
     }
 
     void draw() const {
-        const auto resolutionAsFloat = static_cast<float>(this->resolution);
-        if (this->modifiedIndices.empty())
-            return;
-
         for (int index = 0; index < this->grid.size(); ++index) {
             // TEMP-REMOVED: for (const auto index: this->modifiedIndices) {
             const int
