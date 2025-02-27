@@ -88,6 +88,9 @@ int main(int argc, char **argv) {
 
     std::vector<bool> mouse_button_state = {false, false, false};
     int mousePosX = 0, mousePosY = 0;
+
+    bool canUpdate = false;
+    bool mouseInScreen = false;
     while (true) {
         if (al_is_event_queue_empty(event_queue)) {
             if (!(booting || redraw))
@@ -99,6 +102,28 @@ int main(int argc, char **argv) {
 
         al_wait_for_event(event_queue, &event);
         switch (event.type) {
+            case ALLEGRO_EVENT_KEY_DOWN:
+                switch (event.keyboard.keycode) {
+                    case ALLEGRO_KEY_SPACE:
+                        update();
+                        redraw = true;
+                        break;
+                    case ALLEGRO_KEY_ENTER:
+                        canUpdate = true;
+                        break;
+                    default: ;
+                }
+                break;
+            case ALLEGRO_EVENT_KEY_UP:
+                if (event.keyboard.keycode == ALLEGRO_KEY_ENTER)
+                    canUpdate = false;
+                break;
+            case ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY:
+                mouseInScreen = true;
+                break;
+            case ALLEGRO_EVENT_MOUSE_LEAVE_DISPLAY:
+                mouseInScreen = false;
+                break;
             case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
                 mouse_button_state[event.mouse.button] = true;
                 break;
@@ -110,7 +135,7 @@ int main(int argc, char **argv) {
                 mousePosY = event.mouse.y / RESOLUTION;
                 break;
             case ALLEGRO_EVENT_TIMER:
-                if (!booting) update();
+                if (!booting && canUpdate) update();
                 redraw = true;
                 break;
             case ALLEGRO_EVENT_DISPLAY_CLOSE:
