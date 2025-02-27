@@ -97,6 +97,8 @@ int main(int argc, char **argv) {
                 continue;
             redraw = false;
             draw();
+            if (mouseInScreen)
+                grid->drawMouseCircle(mousePosX, mousePosY);
             al_flip_display();
         }
 

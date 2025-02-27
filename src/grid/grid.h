@@ -77,6 +77,23 @@ public:
         }
     }
 
+    void drawMouseCircle(const int x, const int y, const Color color = Colors::White, const int radius = 0,
+                         const int probability = 100) const {
+        const int radiusSq = radius * radius;
+        for (int circleY = -radius; circleY <= radius; circleY++) {
+            for (int circleX = -radius; circleX <= radius; circleX++) {
+                const int distanceSq = circleX * circleX + circleY * circleY;
+                const bool shouldDraw = randomInRange(0, 100) <= probability;
+                if (distanceSq <= radiusSq && shouldDraw) {
+                    const int fx = x + circleX;
+                    const int fy = y + circleY;
+
+                    this->drawPixel(fx, fy, color);
+                }
+            }
+        }
+    }
+
     void drawPixel(const int x, const int y, const Color &color) const {
         const auto resolutionAsFloat = static_cast<float>(this->resolution);
         const float
