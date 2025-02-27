@@ -41,12 +41,13 @@ struct ParticleProperties {
 
 class Particle : public std::enable_shared_from_this<Particle> {
 protected:
+    std::string id;
     int index;
     ParticleProperties properties;
 
 public:
-    explicit Particle(const ParticleProperties &properties) : index(-1), properties(properties) {
-    }
+    explicit Particle(const std::string &id, const ParticleProperties &properties) : id(id), index(-1),
+        properties(properties) { ; }
 
     void setIndex(int idx);
 

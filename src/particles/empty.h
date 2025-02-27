@@ -5,8 +5,7 @@
 
 class EmptyParticle final : public Particle {
 public:
-  explicit EmptyParticle() : Particle(ParticleProperties().setEmpty()) {
-  }
+  explicit EmptyParticle() : Particle("empty", ParticleProperties().setEmpty()) { ; }
 };
 
 #endif //EMPTY_PARTICLE_H

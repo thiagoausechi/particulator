@@ -6,12 +6,13 @@
 
 class ConductorParticle final : public Particle {
 public:
-    explicit ConductorParticle() : Particle(ParticleProperties()
+    explicit ConductorParticle() : Particle(
+        "conductor",
+        ParticleProperties()
         .setColor({50.0f, 1.0f, 0.5f})
         .setBehaviors({
             std::make_shared<ConductorBehavior>()
-        })) {
-    }
+        })) { ; }
 };
 
 #endif // CONDUCTOR_PARTICLE_H
