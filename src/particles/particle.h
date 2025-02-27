@@ -56,6 +56,16 @@ public:
 
     ParticleProperties getProperties() const;
 
+    virtual Color getColor(const Grid &grid, const int idx) const;
+
+    virtual bool canBePlaced(Grid &grid, const int idx) const;
+
+    virtual void onPlaced(Grid &grid, const int idx) { ; }
+
+    virtual void onChanged(Grid &grid, const int idx) { ; }
+
+    virtual void onBeforeRemoved(Grid &grid, const int idx) { ; }
+
     virtual ~Particle() = default;
 };
 

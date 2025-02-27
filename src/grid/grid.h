@@ -72,7 +72,7 @@ public:
             const int
                     x = index % this->width,
                     y = index / this->width;
-            const auto color = this->particleAt(index)->getProperties().color;
+            const auto color = this->particleAt(index)->getColor(*this, index);
             this->drawPixel(x, y, color);
         }
     }
@@ -100,6 +100,7 @@ public:
     }
 
     void clearIndex(const int index) {
+        this->grid[index]->onBeforeRemoved(*this, index);
         this->setIndex(index, std::make_shared<EmptyParticle>());
     }
 
@@ -107,22 +108,32 @@ public:
         return y * this->width + x;
     }
 
-    void setIndex(const int index, std::shared_ptr<Particle> particle) {
+    void setIndex(const int index, std::shared_ptr<Particle> particle, const bool byUser = false) {
         if (!this->isValidIndex(index)) {
             fprintf(stderr, "Index out of bounds: %d\n", index);
             return;
         }
+
+        if (!particle->canBePlaced(*this, index)) return;
+
+        this->grid[index]->onBeforeRemoved(*this, index);
         this->grid[index] = std::move(particle);
+
+        if (byUser)
+            this->grid[index]->onPlaced(*this, index);
+        else
+            this->grid[index]->onChanged(*this, index);
+
         this->onModified(index);
     }
 
-    void set(const int x, const int y, std::shared_ptr<Particle> particle) {
+    void set(const int x, const int y, std::shared_ptr<Particle> particle, const bool byUser = false) {
         const int index = this->indexOf(x, y);
         if (!this->isValidIndex(index)) {
             fprintf(stderr, "Coordinates out of bounds: (%d, %d)\n", x, y);
             return;
         }
-        this->setIndex(index, std::move(particle));
+        this->setIndex(index, std::move(particle), byUser);
     }
 
     void swap(const int a, const int b) {

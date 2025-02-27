@@ -19,3 +19,12 @@ void Particle::update(Grid &grid, const int idx, const UpdateParams &params) con
 ParticleProperties Particle::getProperties() const {
     return this->properties;
 }
+
+Color Particle::getColor(const Grid &grid, const int idx) const {
+    return this->properties.color;
+}
+
+bool Particle::canBePlaced(Grid &grid, const int idx) const {
+    // TODO: Check if the current particle at the grid is not the same as this particle
+    return true;
+}
