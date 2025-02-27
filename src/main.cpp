@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
 
     init();
 
-    std::vector<bool> mouse_button_state = {false, false, false};
+    std::vector mouse_button_state = {false, false, false};
     int mousePosX = 0, mousePosY = 0;
 
     bool canUpdate = false;
