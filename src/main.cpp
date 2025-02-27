@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
 
     init();
 
-    bool mouse_left_button_down = false;
+    std::vector<bool> mouse_button_state = {false, false, false};
     int mousePosX = 0, mousePosY = 0;
     while (true) {
         if (al_is_event_queue_empty(event_queue)) {
@@ -100,12 +100,10 @@ int main(int argc, char **argv) {
         al_wait_for_event(event_queue, &event);
         switch (event.type) {
             case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-                if (event.mouse.button == ALLEGRO_MOUSE_BUTTON_LEFT)
-                    mouse_left_button_down = true;
+                mouse_button_state[event.mouse.button] = true;
                 break;
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
-                if (mouse_left_button_down && event.mouse.button == ALLEGRO_MOUSE_BUTTON_LEFT)
-                    mouse_left_button_down = false;
+                mouse_button_state[event.mouse.button] = false;
                 break;
             case ALLEGRO_EVENT_MOUSE_AXES:
                 mousePosX = event.mouse.x / RESOLUTION;
@@ -120,8 +118,12 @@ int main(int argc, char **argv) {
             default: break;
         }
 
-        if (mouse_left_button_down)
-            grid->set(mousePosX, mousePosY, std::make_shared<DebugParticle>());
+        if (mouse_button_state[ALLEGRO_MOUSE_BUTTON_LEFT])
+            grid->set(mousePosX, mousePosY, std::make_shared<DebugParticle>(), true);
+        if (mouse_button_state[ALLEGRO_MOUSE_BUTTON_RIGHT]) {
+            const auto index = grid->indexOf(mousePosX, mousePosY);
+            grid->clearIndex(index);
+        }
 
         if (booting)
             booting = false;
