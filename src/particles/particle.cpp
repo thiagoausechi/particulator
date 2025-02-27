@@ -25,6 +25,6 @@ Color Particle::getColor(const Grid &grid, const int idx) const {
 }
 
 bool Particle::canBePlaced(Grid &grid, const int idx) const {
-    // TODO: Check if the current particle at the grid is not the same as this particle
-    return true;
+    const auto currentParticleIdAtGrid = grid.particleAt(idx)->id;
+    return this->id != currentParticleIdAtGrid;
 }
